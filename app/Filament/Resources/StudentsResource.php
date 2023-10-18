@@ -27,6 +27,7 @@ class StudentsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $recordTitleAttribute = 'firstname';
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -35,15 +36,17 @@ class StudentsResource extends Resource
                Forms\Components\Section::make('')
                ->description('')
                ->schema([
-                TextInput::make('LRN')->label('LRN')->required()->minLength(2)->maxLength(255)->numeric()->unique(),
+                TextInput::make('LRN')->label('LRN')->required()->minLength(2)->maxLength(255)->unique()->rule('numeric'),
                 TextInput::make('firstname')->required()->minLength(2)->maxLength(255),
                 TextInput::make('lastname')->required()->minLength(2)->maxLength(255),
                 TextInput::make('middlename')->required()->minLength(2)->maxLength(255),
                 DatePicker::make('birthdate'),
              
-                Select::make('gender')->options([   'male' => 'Male','female' => 'Female',]) ->required(),
+                Select::make('gender')->options([   'male' => 'Male','female' => 'Female',]) ->required()
+                ->native(false)
+                ,
                 TextInput::make('address')->required()->maxLength(255),
-                TextInput::make('contact')->required()->maxLength(255),
+                TextInput::make('contact')->required()->maxLength(255)->rules('numeric'),
                 TextInput::make('email')->required()->maxLength(255)->unique(),
                 TextInput::make('parent/guardian')->required()->minLength(2)->maxLength(255),
                 TextInput::make('parent/guardian-contact')->required()->minLength(2)->maxLength(255),
@@ -80,7 +83,7 @@ class StudentsResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])->label('Delete')->icon('heroicon-o-trash'),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
@@ -106,16 +109,27 @@ class StudentsResource extends Resource
    public static function getGlobalSearchResultDetails(Model $record): array
    {
     return [
+        "LRN" => $record->LRN,
 "Firstname" =>$record->firstname,
-"LRN" => $record->LRN
+"Lastname" =>$record->lastname,
+
     ];
+   }
+   public static function getGloballySearchableAttributes(): array
+   {
+    return ['firstname', 'lastname' , 'LRN'];
    }
    public static function getGlobalSearchResultActions(Model $record): array
    {
+ 
     return [
-     Action::make(name: 'Edit')
+     Action::make(name: 'View')
      ->iconButton()
-     ->icon('heroicon-o-pencil'),
+     ->icon(icon: 'heroicon-o-eye')
+      ->url(static::getUrl('edit', ['record' => $record])),
+
+     
+     
     ];
    }
 }

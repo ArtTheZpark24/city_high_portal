@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class Stem11Seeder extends Seeder
-{
+{    
     /**
      * Run the database seeds.
      */
@@ -86,6 +86,29 @@ class Stem11Seeder extends Seeder
                 'strand' => 'STEM Strand',
                 'subject_type' => 'Core',
             ],
+            [
+                'name' => 'Reading and Writing Skills',
+                'grade_level' => 'Grade 11',
+                'semester' => '2nd Semester',
+                'strand' => 'STEM Strand',
+                'subject_type' => 'Core',
+            ],
+            [
+                'name' => 'Statistics and Probability',
+                'grade_level' => 'Grade 11',
+                'semester' => '2nd Semester',
+                'strand' => 'STEM Strand',
+                'subject_type' => 'Core',
+            ],
+            [
+                'name' => 'Disaster Readiness and Risk
+                Reduction',
+                'grade_level' => 'Grade 11',
+                'semester' => '2nd Semester',
+                'strand' => 'STEM Strand',
+                'subject_type' => 'Core',
+            ],
+            
             
         ];
         DB::table('stem11s')->insert($stem11Sub);
