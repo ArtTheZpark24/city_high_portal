@@ -16,14 +16,16 @@ class StrandsSeeder extends Seeder
         \App\Models\Strands::factory(1)->create();
 
         \App\Models\Strands::factory()->create([
-           'list' => 'Accountancy, Business and Management Strand',
-           'list' => 'Science, Technology, Engineering, and Mathematics (STEM) Strand',
-           'list' => 'Science, Technology, Engineering, and Mathematics (STEM) Strand',
-           'list' => 'General Academic Strand (GAS)',
-           'list' => 'TVL Track: Agricultural-Fishery Arts (AFA) Strand',
-           'list' => 'TVL Track: Home Economics (HE) Strand',
-           'list' => 'TVL Track: Industrial Arts (IA) Strand',
-           'list' => 'TVL Track: Information and Communications Technology (ICT) Strand',
+            "strands_name" => "STEM 11",
+           "strands_name" => "STEM 12",
+           "strands_name" => "ABM 11",
+           "strands_name" => "ABM 12",
+           "strands_name" => "HUMMS 11",
+           "strands_name" => "HUMMS 12",
+           "strands_name" => "Art and Design 11",
+           "strands_name" => "Art and Design 12",
+           "strands_name" => "TVL 11",
+           "strands_name" => "TVL 12"
         ]);
     }
 }

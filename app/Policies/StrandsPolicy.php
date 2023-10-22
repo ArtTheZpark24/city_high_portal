@@ -13,7 +13,7 @@ class StrandsPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class StrandsPolicy
      */
     public function view(User $user, Strands $strands): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,8 @@ class StrandsPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -37,7 +38,7 @@ class StrandsPolicy
      */
     public function update(User $user, Strands $strands): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +46,7 @@ class StrandsPolicy
      */
     public function delete(User $user, Strands $strands): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +54,7 @@ class StrandsPolicy
      */
     public function restore(User $user, Strands $strands): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +62,6 @@ class StrandsPolicy
      */
     public function forceDelete(User $user, Strands $strands): bool
     {
-        //
+        return true;
     }
 }

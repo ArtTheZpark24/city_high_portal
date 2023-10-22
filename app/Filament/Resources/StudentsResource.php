@@ -25,7 +25,7 @@ class StudentsResource extends Resource
 {
     protected static ?string $model = Students::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $recordTitleAttribute = 'firstname';
     
     public static function form(Form $form): Form
@@ -36,7 +36,7 @@ class StudentsResource extends Resource
                Forms\Components\Section::make('')
                ->description('')
                ->schema([
-                TextInput::make('LRN')->label('LRN')->required()->minLength(2)->maxLength(255)->unique()->rule('numeric'),
+                TextInput::make('LRN')->label('LRN')->required()->unique()->rule('numeric'),
                 TextInput::make('firstname')->required()->minLength(2)->maxLength(255),
                 TextInput::make('lastname')->required()->minLength(2)->maxLength(255),
                 TextInput::make('middlename')->required()->minLength(2)->maxLength(255),
@@ -46,10 +46,10 @@ class StudentsResource extends Resource
                 ->native(false)
                 ,
                 TextInput::make('address')->required()->maxLength(255),
-                TextInput::make('contact')->required()->maxLength(255)->rules('numeric'),
+                TextInput::make('contact')->required()->rules('numeric'),
                 TextInput::make('email')->required()->maxLength(255)->unique(),
                 TextInput::make('parent/guardian')->required()->minLength(2)->maxLength(255),
-                TextInput::make('parent/guardian-contact')->required()->minLength(2)->maxLength(255),
+                TextInput::make('parent/guardian-contact')->required()->rule('numeric'),
               
                 ])->columns(3),
                 
@@ -86,7 +86,8 @@ class StudentsResource extends Resource
                 ])->label('Delete')->icon('heroicon-o-trash'),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                ->createAnother(true),
             ]);
     }
     
