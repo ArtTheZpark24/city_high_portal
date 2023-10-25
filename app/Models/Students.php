@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 
@@ -36,5 +37,8 @@ class Students extends Model
         static::creating(function ($student) {
             $student->password = Hash::make($student->LRN);
         });
+    }
+    public function enrollment(){
+        return $this->hasMany(Enrollment::class);
     }
 }

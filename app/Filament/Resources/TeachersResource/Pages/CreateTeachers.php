@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateTeachers extends CreateRecord
 {
     protected static string $resource = TeachersResource::class;
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Teachers created';
+    }
 }

@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
        
         // ...
+        ->sidebarCollapsibleOnDesktop()
         ->login()
         ->passwordReset()
         ->emailVerification()

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            
-        
+            $table->foreignId('students_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('strands_id')->constrained()->cascadeOnDelete();
+            $table->enum('semester', ['1st semester', '2nd semester']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

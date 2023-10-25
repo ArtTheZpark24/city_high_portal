@@ -27,6 +27,8 @@ class StudentsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $recordTitleAttribute = 'firstname';
+    protected static?string $navigationGroup = 'Teachers/Students';
+
     
     public static function form(Form $form): Form
     {
@@ -72,9 +74,12 @@ class StudentsResource extends Resource
             ])
             ->filters([
                 //
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                ->native(false)
+                ,
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),

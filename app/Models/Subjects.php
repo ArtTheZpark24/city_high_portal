@@ -21,6 +21,9 @@ class Subjects extends Model
     {
         return $this->belongsTo(Strands::class, 'strands_id');
     }
+    public function enrollment(){
+        return $this->belongsToMany(Enrollment::class);
+    }
 }
 
 

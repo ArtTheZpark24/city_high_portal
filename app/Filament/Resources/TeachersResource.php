@@ -26,12 +26,14 @@ class TeachersResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $recordTitleAttribute = 'first_name';
+    protected static?string $navigationGroup = 'Teachers/Students';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Section::make('')
-                ->description('')
+                ->description('Add teachers')
                 ->schema([
                     TextInput::make('teacher_id')->unique()
                     ->required()->rules('numeric')->maxLength('255'),
@@ -78,6 +80,7 @@ class TeachersResource extends Resource
                 Tables\Filters\TrashedFilter::make()->native(false)
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),

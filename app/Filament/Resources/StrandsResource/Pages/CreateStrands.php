@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateStrands extends CreateRecord
 {
     protected static string $resource = StrandsResource::class;
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'strands created';
+    }
 }

@@ -18,4 +18,7 @@ class Strands extends Model
     {
         return $this->hasMany(Subjects::class);
     }
+    public function enrollment(){
+        return $this->hasMany(Enrollment::class);
+    }
 }

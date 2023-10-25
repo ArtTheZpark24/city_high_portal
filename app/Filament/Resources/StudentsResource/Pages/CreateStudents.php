@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateStudents extends CreateRecord
 {
     protected static string $resource = StudentsResource::class;
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Student created';
+    }
 }
