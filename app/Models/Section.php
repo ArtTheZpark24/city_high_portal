@@ -19,4 +19,7 @@ class Section extends Model
     public function schedule(){
         return $this->hasMany(Schedule::class);
     }
+    public function enrollement(){
+        return $this->hasMany(Enrollment::class);
+    }
 }

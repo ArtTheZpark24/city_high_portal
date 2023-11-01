@@ -12,19 +12,20 @@ class Enrollment extends Model
     protected $fillable =[
         'students_id',
         'strands_id',
+        'sections_id',
+        'term',
         'semester',
-        'subjects_id'
+       
     ];
     use HasFactory,SoftDeletes;
-    public function subjects(){
-
-        return $this->belongsTo(Subjects::class ,  'subjects_id');
-    }
     public function students(): BelongsTo{
         return $this->belongsTo(Students::class, 'students_id');
     }
     public function strands(){
         return $this->belongsTo(Strands::class, 'strands_id');
+    }
+    public function sections(){
+        return $this->belongsTo(Section::class , 'sections_id');
     }
 }
 

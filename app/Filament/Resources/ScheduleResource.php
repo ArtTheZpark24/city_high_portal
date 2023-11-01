@@ -34,15 +34,19 @@ class ScheduleResource extends Resource
                     ->relationship(name: 'teachers', titleAttribute: 'first_name')
                     ->native(false),
                     TimePicker::make('time')
-                     ->seconds(false),
+                     ->seconds(false)->required(),
 
                 Select::make('strands_id')
                 ->relationship(name: 'strands', titleAttribute: 'strands_name')
-                ->native(false) 
+                ->native(false) ->required()
                 ,
-                   Select::make('sections_id ')
-                   ->relationship(name: 'section', titleAttribute: 'section_name'),
-                     
+                 
+                Select::make('sections_id')
+                ->relationship(name: 'sections', titleAttribute: 'section_name')->native(false)->required(),
+
+                Select::make('subjects_id')
+                ->relationship(name: 'subjects', titleAttribute:'subjects')->native(false)->required(),
+              
 
                 Select::make('day')
                  ->options([
@@ -53,7 +57,7 @@ class ScheduleResource extends Resource
                     'Thursday' => 'Thursday',
                     'Friday' => 'Friday',
                    
-                 ])->native(false)
+                 ])->native(false)->required()
                 ])->columns(2)
                 
                 
@@ -63,8 +67,14 @@ class ScheduleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
+            ->columns([ 
+                 Tables\Columns\TextColumn::make('subjects.subjects')->label('Subjects'),
+                 Tables\Columns\TextColumn::make('time')->label('Time'),
+                Tables\Columns\TextColumn::make('Day'),
+                Tables\Columns\TextColumn::make('sections.section_name')->label('Section'),
+                Tables\Columns\TextColumn::make('teachers.first_name')->label('Teacher'),
+                Tables\Columns\TextColumn::make('teachers.last_name')->label(''),
+                
             ])
             ->filters([
                 //

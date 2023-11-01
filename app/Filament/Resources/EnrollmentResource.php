@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -48,11 +49,11 @@ class EnrollmentResource extends Resource
 
                    )     ->searchable(['firstname', 'lRN', 'email', 'lastname'])
                    ->placeholder('Search by Name, LRN, Lastname or Email')
-                   
+                   ->required()
                    ->editOptionForm([
-                    Forms\Components\TextInput::make('firstname'),
-                    Forms\Components\TextInput::make('lastname'),
-                    Forms\Components\TextInput::make('LRN')->label('LRN'),
+                    Forms\Components\TextInput::make('firstname') ->required(),
+                    Forms\Components\TextInput::make('lastname') ->required(),
+                    Forms\Components\TextInput::make('LRN')->label('LRN') ->required(),
                    
 
                     
@@ -65,7 +66,7 @@ class EnrollmentResource extends Resource
                    Select::make('strands_id')
                    ->relationship(name:'strands', titleAttribute:'strands_name')
                    ->native(false)
-                   ->placeholder('Select a strands'),
+                   ->placeholder('Select a strands') ->required(),
                    Select::make('semester')
                    ->label('Semester')
                    ->options([
@@ -74,6 +75,21 @@ class EnrollmentResource extends Resource
                    ])
                    ->placeholder('Select a semester')
                    ->native(false)
+                   ->required(),
+                   Select::make('term')
+                   ->label('Grade')
+                   ->options([
+                   ' 11 '=> '11',
+                    ' 12' => '12'
+                   ])->native(false)
+                   ->required()
+                   ,
+                   Select::make('sections_id')
+                   ->relationship(name: 'sections', titleAttribute: 'section_name')
+                   ->native(false)
+                   ->required()
+                   
+                   
                 ])->columns(2)
             ]);
     }
@@ -86,10 +102,22 @@ class EnrollmentResource extends Resource
                 Tables\Columns\TextColumn::make('students.lastname')->label('Lastname'),
                 Tables\Columns\TextColumn::make('students.LRN')->label('LRN'),
                 Tables\Columns\TextColumn::make('strands.strands_name'),
-               Tables\Columns\TextColumn::make('semester')
-            ])
+                Tables\Columns\TextColumn::make('term')->label('Grade'),
+                Tables\Columns\TextColumn::make('sections.section_name')->label('Section'),
+               Tables\Columns\TextColumn::make('semester'),
+               
+            
+            ])->groups([
+                'semester'
+            ])->defaultGroup('semester')
             ->filters([
-                //
+                SelectFilter::make('sections_id')
+                ->relationship(name: 'sections', titleAttribute:'section_name')->label('Sections')
+                ->native(false),
+                Tables\Filters\TrashedFilter::make()
+                ->native(false),
+            ])->groups([
+                
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

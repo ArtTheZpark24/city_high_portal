@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('students_id')->constrained()->cascadeOnDelete();
             $table->foreignId('strands_id')->constrained()->cascadeOnDelete();
+            $table->enum('term', ['11', '12']);
+            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
             $table->enum('semester', ['1st semester', '2nd semester']);
             $table->softDeletes();
             $table->timestamps();

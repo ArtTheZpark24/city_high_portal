@@ -30,8 +30,8 @@ public function strands(){
     return $this->belongsTo(Strands::class, 'strands_id');
 }
 
-public function section(){
-    return $this->belongsTo(Schedule::class, 'sections_id');
+public function sections(){
+    return $this->belongsTo(Section::class, 'sections_id');
 }
 
 
