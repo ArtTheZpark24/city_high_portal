@@ -7,6 +7,7 @@ use App\Filament\Resources\ScheduleResource\RelationManagers;
 use App\Models\Schedule;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -18,19 +19,45 @@ class ScheduleResource extends Resource
 {
     protected static ?string $model = Schedule::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar';
+    protected static ?string $navigationGroup = 'System management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+
                 Forms\Components\Section::make('')
                 ->description('Add schedule')
                 ->schema([
                     Select::make('teachers_id')
-                    ->relationship(name: 'teachers', titleAttribute: 'firstname')
-                ])
-            ]);
+                    ->relationship(name: 'teachers', titleAttribute: 'first_name')
+                    ->native(false),
+                    TimePicker::make('time')
+                     ->seconds(false),
+
+                Select::make('strands_id')
+                ->relationship(name: 'strands', titleAttribute: 'strands_name')
+                ->native(false) 
+                ,
+                   Select::make('sections_id ')
+                   ->relationship(name: 'section', titleAttribute: 'section_name'),
+                     
+
+                Select::make('day')
+                 ->options([
+
+                    'Monday' => 'Monday',
+                    'Tuesday' => 'Tuesday',
+                    'Wednesday' => 'Wednesday',
+                    'Thursday' => 'Thursday',
+                    'Friday' => 'Friday',
+                   
+                 ])->native(false)
+                ])->columns(2)
+                
+                
+                ]);
     }
 
     public static function table(Table $table): Table

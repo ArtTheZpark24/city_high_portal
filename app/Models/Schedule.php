@@ -15,6 +15,7 @@ class Schedule extends Model
         'teachers_id',
         'subjects_id',
         'strands_id',
+        'sections_id',
         'day',
         'time'
     ];
@@ -28,4 +29,10 @@ class Schedule extends Model
 public function strands(){
     return $this->belongsTo(Strands::class, 'strands_id');
 }
+
+public function section(){
+    return $this->belongsTo(Schedule::class, 'sections_id');
+}
+
+
 }

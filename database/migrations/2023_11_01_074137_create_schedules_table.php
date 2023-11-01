@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('subjects_id')->constrained()->cascadeOnDelete();
             $table->foreignId('strands_id')->constrained()->cascadeOnDelete();
             $table->enum('Day',['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
+            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
             $table->time('time');
             $table->softDeletes();
 
@@ -32,3 +33,5 @@ return new class extends Migration
         Schema::dropIfExists('schedules');
     }
 };
+
+

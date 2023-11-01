@@ -21,4 +21,7 @@ class Strands extends Model
     public function enrollment(){
         return $this->hasMany(Enrollment::class);
     }
+    public function section(){
+        return $this->hasMany(Section::class);
+    }
 }
