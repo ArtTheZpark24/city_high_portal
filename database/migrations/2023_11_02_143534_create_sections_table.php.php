@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('section_name');
             $table->foreignId('strands_id')->constrained()->cascadeOnDelete();
+            $table->enum('term' ,[11 , 12]);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,3 +29,4 @@ return new class extends Migration
         Schema::dropIfExists('sections');
     }
 };
+

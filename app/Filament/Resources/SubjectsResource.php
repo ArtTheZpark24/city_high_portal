@@ -46,6 +46,11 @@ class SubjectsResource extends Resource
                   ->preload()
                   ->required()
                   ,
+                  Select::make('term')->native(false)
+                  ->options([
+                    11=>11,
+                    12=>12
+                  ])->label('Grade'),
                   Select::make('semester')
                   ->options([
                     '1st semester' => '1st semester',
@@ -65,7 +70,8 @@ class SubjectsResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('subjects'),
                 Tables\Columns\TextColumn::make('strands.strands_name')->label('Strands'),
-                Tables\Columns\TextColumn::make('semester')
+                Tables\Columns\TextColumn::make('semester'),
+                Tables\Columns\TextColumn::make('term')->label('Grade')
           
             ])
             ->filters([
@@ -80,6 +86,12 @@ class SubjectsResource extends Resource
                )
                ->native(false)
                ->label('Strands')
+               ,
+               SelectFilter::make('term')->label("Grade")
+               ->options([
+                11=>11,
+                12=>12
+               ])->native(false)
                ,
 
              SelectFilter::make('semester')

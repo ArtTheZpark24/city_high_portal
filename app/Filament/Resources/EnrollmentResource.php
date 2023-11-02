@@ -105,6 +105,7 @@ class EnrollmentResource extends Resource
                 Tables\Columns\TextColumn::make('term')->label('Grade'),
                 Tables\Columns\TextColumn::make('sections.section_name')->label('Section'),
                Tables\Columns\TextColumn::make('semester'),
+               Tables\Columns\TextColumn::make('created_at')->label('Date enrolled'),
                
             
             ])->groups([

@@ -22,6 +22,7 @@ class SectionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
       protected static ?string $navigation = 'heroicon-o-rectangle-stack';
+      protected static ?string $navigationGroup = 'System management';
 
     public static function form(Form $form): Form
     {
@@ -44,7 +45,8 @@ class SectionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('section_name')->label('Sections'),
+                Tables\Columns\TextColumn::make('strands.strands_name')->label('Strands')
             ])
             ->filters([
                 //
