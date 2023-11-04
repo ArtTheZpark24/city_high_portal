@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-class Students extends Model
+class Students extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+  
+    use HasFactory, SoftDeletes ;
     protected $fillable = [
 
         'LRN',
