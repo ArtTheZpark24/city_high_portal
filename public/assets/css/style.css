@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;  
+}
+.error-message{
+    background-color: rgb(224, 83, 83);
+    padding: 7px;
+  
+}
+.login-container{
+    padding-top: 50px;
+}
+.error-message p{
+    background-color: rgb(224, 83, 83);
+    list-style: none;
+
+}
+.login-email , .login-password{
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #007bff;
+}
+.d-logo a{
+    text-decoration: none;
+    color: black;
+}
+.dash-nav{
+    padding: 10px;
+}
+.nav-item, .dropdown{
+    list-style:  none;
+    margin-right: 100px;
+}
+.nav-item > .dropdown > ul > li > form > button{
+   width: 100px;
+}
+.email-input, .password-input{
+    border-color: #007bff;
+}
+.btn-login{
+    background-color: #007bff;
+            border-color: #007bff;
+}
+.login-logo{
+    color: #007bff;
+}
+.btn-logout {
+    background-color: #4d5246;
+    color: #fff;
+    margin-left: 15px;
+}
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media screen and (max-width: 600px) {
+    body {
+        background-color: blue;
+    }
+}

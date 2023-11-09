@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentsController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,16 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-Route::match(['get', 'post'], '/login', [StudentsController::class, 'index'])->name('login');
 
-Route::middleware('student')->group(function(){
-Route::get('/dashboard' , function(){
-    return view('/partials.dashboard');
-  
+Route::get('/', [StudentsController::class, 'checkAuth']);
+Route::post('/', [StudentsController::class, 'index'])->name('login');
+
+Route::middleware(['auth:student'])->group(function () {
+    Route::get('/dashboard', [StudentsController::class, 'getSession'])->name('dashboard');
+    Route::match(['get', 'post'], '/logout', [StudentsController::class, 'logout'])->name('logout');
+   
 });
-Route::match(['get', 'post'], '/logout', [DashboardController::class, 'logout'])->name('logout');
-});
-@include('partials.header');
