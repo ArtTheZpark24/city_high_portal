@@ -6,15 +6,27 @@
 <body>
   
    <div class="container-fluid login-container">
+    
     <div class="row">
         <div class="offset-md-4  col-md-4 mt-5 border p-5 rounded-2">
 
              
     
             
-            <h2 class="text-center login-logo">STUDENT PORTAL</h2>
+            <h2 class="text-center login-logo">CITY HIGH PORTAL</h2>
+            <div class="dropdown mt-5">
+                <button class="btn border  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Log in as
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ url('/teachers') }}">Teacher</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/') }}">Student</a></li>
+                  <li><a class="dropdown-item" href="#">Parent</a></li>
+                
+                </ul>
+              </div>
             
-            <form action="{{ route('login') }}" method="POST" class="form-group mt-5">
+            <form action="{{ route('teachers.login') }}" method="POST" class="form-group mt-5">
                 @csrf
 
                 @if ($errors->any())

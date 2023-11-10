@@ -62,7 +62,7 @@ class StudentsController extends Controller
     }
     public function getSession(){
         $firstname = Auth::guard('student')->user()->firstname;
-        return view('/dashboard', ['firstname' => $firstname]);
+        return view('students.dashboard', ['firstname' => $firstname]);
      }
 public function checkAuth(){
 
@@ -70,7 +70,7 @@ public function checkAuth(){
         return redirect()->route('dashboard');
     }
     else{
-        return view('login');
+        return view('students.login');
     }
 }
 

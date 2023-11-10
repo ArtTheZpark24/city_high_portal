@@ -36,7 +36,7 @@ class TeachersResource extends Resource
                 ->description('Add teachers')
                 ->schema([
                     TextInput::make('teacher_id')->unique()
-                    ->required()->rules('numeric')->maxLength('255'),
+                    ->required()->rules('numeric'),
                     TextInput::make('first_name')
                     ->required()->minLength('2')->maxLength('255'),
                     TextInput::make('last_name')
@@ -48,11 +48,11 @@ class TeachersResource extends Resource
                     ->required()->native(false),
                     TextInput::make('address')->required(),
                     TextInput::make('primary_contact')->required()
-                    ->rules('required|numeric|digits:10',),
+                    ->rules('required|numeric|digits:11',),
                     TextInput::make('email')
                     ->unique()->required(),
                     TextInput::make('emergency_contact')
-                    ->rules('required|numeric|digits:10',),
+                    ->rules('required|numeric|digits:11',),
 
                     
                     

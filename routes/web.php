@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentsController;
-
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [StudentsController::class, 'checkAuth']);
-Route::post('/', [StudentsController::class, 'index'])->name('login');
+Route::post('/', [StudentsController::class, 'index'])->name('students.login');
+Route::get('/teachers', [TeachersController::class, 'index']);
+Route::post('/teachers', [TeachersController::class, 'login'])->name('teachers.login');
 
+
+
+Route::middleware(['auth:teacher'])->group(function(){
+    Route::get('/teachers-dashboard',[TeachersController::class,'dashboard']);    
+});
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/dashboard', [StudentsController::class, 'getSession'])->name('dashboard');
-    Route::match(['get', 'post'], '/logout', [StudentsController::class, 'logout'])->name('logout');
+    Route::match(['get', 'post'], '/dashboard', [StudentsController::class, 'logout'])->name('logout');
    
 });
